@@ -13,6 +13,7 @@ class AppTranslation {
     'landing.page.version': 'Validating version...',
     'landing.page.new.version': 'There is a new version available!',
     'landing.page.account': 'Validating account...',
+    'landing.page.button': 'Try again',
     'login.page.button.login': 'Login',
   };
 
@@ -28,6 +29,7 @@ class AppTranslation {
     'landing.page.version': 'Validando versão...',
     'landing.page.new.version': 'Há uma nova versão disponível!',
     'landing.page.account': 'Validando conta...',
+    'landing.page.button': 'Tentar novamente',
     'login.page.button.login': 'Conecte-se',
   };
 
@@ -43,6 +45,7 @@ class AppTranslation {
     'landing.page.version': 'Validando la versión...',
     'landing.page.new.version': '¡Hay una nueva versión disponible!',
     'landing.page.account': 'Validando cuenta...',
+    'landing.page.button': 'Intentar otra vez',
     'login.page.button.login': 'Acceso',
   };
 }

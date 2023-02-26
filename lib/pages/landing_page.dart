@@ -34,7 +34,7 @@ class LandingPage extends StatelessWidget {
                         const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () => controller.tryAgain(),
-                          child: const Text('Tentar novamente'),
+                          child: Text('landing.page.button'.tr),
                         ),
                       ],
                     ],
