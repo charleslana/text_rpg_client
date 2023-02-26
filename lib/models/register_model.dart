@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:validators/validators.dart' as validator;
 
 import '../utils/functions.dart';
@@ -65,13 +66,13 @@ class User {
 
   String? validate() {
     if (value.isEmpty) {
-      return 'O campo nome de usuário não pode ser vazio';
+      return 'register.page.input.user.empty'.tr;
     }
     if (value.trim().length < 3 || value.trim().length > 20) {
-      return 'O nome de usuário deve conter no mínimo 6 caracteres e no máximo 20 caracteres';
+      return 'register.page.input.user.min.character'.tr;
     }
     if (!isUser(value)) {
-      return 'O nome de usuário pode conter letras, números e caractere underscore';
+      return 'register.page.input.user.character.accept'.tr;
     }
     return null;
   }
@@ -84,10 +85,10 @@ class Email {
 
   String? validate() {
     if (value.isEmpty) {
-      return 'O campo email não pode ser vazio';
+      return 'register.page.input.email.empty'.tr;
     }
     if (!validator.isEmail(value)) {
-      return 'E-mail inválido';
+      return 'register.page.input.email.invalid'.tr;
     }
     return null;
   }
@@ -100,10 +101,10 @@ class Password {
 
   String? validate() {
     if (value.isEmpty) {
-      return 'O campo senha não pode ser vazio';
+      return 'register.page.input.password.empty'.tr;
     }
     if (value.trim().length < 6) {
-      return 'A senha deve conter no mínimo 6 caracteres';
+      return 'register.page.input.password.min.character'.tr;
     }
     return null;
   }
@@ -114,15 +115,15 @@ class PasswordConfirmation {
 
   final String value;
 
-  String? validate(String confirmPassword) {
+  String? validate(String passwordConfirmation) {
     if (value.isEmpty) {
-      return 'O campo confirmar senha não pode ser vazio';
+      return 'register.page.input.password.confirmation.empty'.tr;
     }
     if (value.trim().length < 6) {
-      return 'A confirmação da senha deve conter no mínimo 6 caracteres';
+      return 'register.page.input.password.confirmation.min.character'.tr;
     }
-    if (value.trim() != confirmPassword.trim()) {
-      return 'As senhas digitadas estão diferentes';
+    if (value.trim() != passwordConfirmation.trim()) {
+      return 'register.page.input.password.confirmation.different'.tr;
     }
     return null;
   }
