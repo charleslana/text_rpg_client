@@ -19,7 +19,6 @@ class AppBarLanguage extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       centerTitle: true,
       elevation: 0,
-      automaticallyImplyLeading: false,
       title: DropdownButtonHideUnderline(
         child: DropdownButton<LanguageModel>(
           value: languageController.selectedLanguage.value,

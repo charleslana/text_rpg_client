@@ -1,21 +1,39 @@
 import 'package:validators/validators.dart' as validator;
 
+import '../utils/functions.dart';
+
 class RegisterModel {
+  User _user = User('');
+
+  void setUser(String user) => _user = User(user);
+
+  User get user => _user;
+
   Email _email = Email('');
-  void setEmail(String newEmail) => _email = Email(newEmail);
+
+  void setEmail(String email) => _email = Email(email);
+
   Email get email => _email;
 
   Password _password = Password('');
-  void setPassword(String newPassword) => _password = Password(newPassword);
+
+  void setPassword(String password) => _password = Password(password);
+
   Password get password => _password;
 
-  ConfirmPassword _confirmPassword = ConfirmPassword('');
-  void setConfirmPassword(String newConfirmPassword) =>
-      _confirmPassword = ConfirmPassword(newConfirmPassword);
-  ConfirmPassword get confirmPassword => _confirmPassword;
+  PasswordConfirmation _passwordConfirmation = PasswordConfirmation('');
+
+  void setConfirmPassword(String confirmPassword) =>
+      _passwordConfirmation = PasswordConfirmation(confirmPassword);
+
+  PasswordConfirmation get confirmPassword => _passwordConfirmation;
 
   String? validate() {
-    String? validate = _email.validate();
+    String? validate = _user.validate();
+    if (validate != null) {
+      return validate;
+    }
+    validate = _email.validate();
     if (validate != null) {
       return validate;
     }
@@ -23,7 +41,7 @@ class RegisterModel {
     if (validate != null) {
       return validate;
     }
-    validate = _confirmPassword.validate(_password.value);
+    validate = _passwordConfirmation.validate(_password.value);
     if (validate != null) {
       return validate;
     }
@@ -32,9 +50,30 @@ class RegisterModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'user': _user.value,
       'email': _email.value,
       'password': _password.value,
+      'passwordConfirmation': _passwordConfirmation.value,
     };
+  }
+}
+
+class User {
+  User(this.value);
+
+  final String value;
+
+  String? validate() {
+    if (value.isEmpty) {
+      return 'O campo nome de usuário não pode ser vazio';
+    }
+    if (value.trim().length < 3 || value.trim().length > 20) {
+      return 'O nome de usuário deve conter no mínimo 6 caracteres e no máximo 20 caracteres';
+    }
+    if (!isUser(value)) {
+      return 'O nome de usuário pode conter letras, números e caractere underscore';
+    }
+    return null;
   }
 }
 
@@ -61,7 +100,7 @@ class Password {
 
   String? validate() {
     if (value.isEmpty) {
-      return 'O campo Senha não pode ser vazio';
+      return 'O campo senha não pode ser vazio';
     }
     if (value.trim().length < 6) {
       return 'A senha deve conter no mínimo 6 caracteres';
@@ -70,14 +109,14 @@ class Password {
   }
 }
 
-class ConfirmPassword {
-  ConfirmPassword(this.value);
+class PasswordConfirmation {
+  PasswordConfirmation(this.value);
 
   final String value;
 
   String? validate(String confirmPassword) {
     if (value.isEmpty) {
-      return 'O campo Confirmar senha não pode ser vazio';
+      return 'O campo confirmar senha não pode ser vazio';
     }
     if (value.trim().length < 6) {
       return 'A confirmação da senha deve conter no mínimo 6 caracteres';

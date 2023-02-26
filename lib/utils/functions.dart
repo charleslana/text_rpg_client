@@ -5,9 +5,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../enums/toast_enum.dart';
 
-bool isName(String name) {
-  return RegExp(r'^[a-zA-Z0-9]([_](?![_])|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$')
-      .hasMatch(name);
+bool isUser(String name) {
+  return RegExp(r'^[a-zA-ZÀ-ú\d_]*$').hasMatch(name);
 }
 
 void _closeToast() {
