@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 class LoginCredentialModel {
   User _user = User('');
 
@@ -43,7 +45,7 @@ class User {
 
   String? validate() {
     if (value.isEmpty) {
-      return 'O campo do usuário não pode ser vazio';
+      return 'login.page.input.user.empty'.tr;
     }
     return null;
   }
@@ -56,7 +58,7 @@ class Password {
 
   String? validate() {
     if (value.isEmpty) {
-      return 'O campo Senha não pode ser vazio';
+      return 'login.page.input.password.empty'.tr;
     }
     return null;
   }

@@ -99,3 +99,7 @@ void showConfirmation(VoidCallback callback) {
     middleText: 'dialog.confirmation.content'.tr,
   );
 }
+
+void navigate(String routeName) {
+  Get.toNamed<dynamic>(routeName);
+}

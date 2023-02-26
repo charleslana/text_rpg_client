@@ -15,6 +15,12 @@ class AppTranslation {
     'landing.page.account': 'Validating account...',
     'landing.page.button': 'Try again',
     'login.page.button.login': 'Login',
+    'login.page.input.user': 'User',
+    'login.page.input.password': 'Password',
+    'login.page.button.register': 'Register',
+    'login.page.button.discord': 'Join Discord',
+    'login.page.input.user.empty': 'User field cannot be empty',
+    'login.page.input.password.empty': 'Password field cannot be empty',
   };
 
   static final Map<String, String> ptBR = {
@@ -31,6 +37,12 @@ class AppTranslation {
     'landing.page.account': 'Validando conta...',
     'landing.page.button': 'Tentar novamente',
     'login.page.button.login': 'Conecte-se',
+    'login.page.input.user': 'Usuário',
+    'login.page.input.password': 'Senha',
+    'login.page.button.register': 'Cadastre-se',
+    'login.page.button.discord': 'Junte-se ao Discord',
+    'login.page.input.user.empty': 'O campo do usuário não pode ser vazio',
+    'login.page.input.password.empty': 'O campo senha não pode ser vazio',
   };
 
   static final Map<String, String> esES = {
@@ -47,5 +59,12 @@ class AppTranslation {
     'landing.page.account': 'Validando cuenta...',
     'landing.page.button': 'Intentar otra vez',
     'login.page.button.login': 'Acceso',
+    'login.page.input.user': 'Usuario',
+    'login.page.input.password': 'Contraseña',
+    'login.page.button.register': 'Registrar',
+    'login.page.button.discord': 'Únete a Discord',
+    'login.page.input.user.empty': 'El campo de usuario no puede estar vacío',
+    'login.page.input.password.empty':
+        'El campo de contraseña no puede estar vacío',
   };
 }

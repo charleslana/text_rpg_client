@@ -29,11 +29,10 @@ class LoginService extends GetConnect {
   AuthModel getAuth() => AuthModel.fromMap(_readAuth()!);
 
   Future<AuthModel> login(LoginCredentialModel credential) async {
-    final formData = FormData({
-      'email': credential.user.value,
+    final response = await post<dynamic>('/account/login', {
+      'user': credential.user.value,
       'password': credential.password.value,
     });
-    final response = await post<dynamic>('/account/login', formData);
     if (response.status.hasError) {
       if (response.bodyString == null) {
         return Future.error('connection.error'.tr);
