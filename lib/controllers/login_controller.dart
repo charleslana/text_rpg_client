@@ -27,7 +27,7 @@ class LoginController extends GetxController {
         loginService
           ..saveLogin(credential)
           ..saveAuth(result);
-        Get.offAllNamed<dynamic>(AppRoutes.selectCharacter);
+        replaceNavigate(AppRoutes.selectCharacter);
       },
       onError: (dynamic error) {
         Get.back<dynamic>();

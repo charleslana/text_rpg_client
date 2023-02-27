@@ -1,16 +1,174 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:text_rpg_client/controllers/select_character_controller.dart';
+import 'package:text_rpg_client/models/account_character_model.dart';
+import 'package:text_rpg_client/routes/app_routes.dart';
+import 'package:text_rpg_client/widgets/clock.dart';
+import 'package:text_rpg_client/widgets/custom_app_bar.dart';
 
-class SelectCharacterPage extends StatelessWidget {
+import '../controllers/login_controller.dart';
+import '../utils/functions.dart';
+
+class SelectCharacterPage extends GetView<SelectCharacterController> {
   const SelectCharacterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    final LoginController loginController = Get.find<LoginController>();
+
+    void delete(VoidCallback callback) {
+      showConfirmation(callback);
+    }
+
+    return SafeArea(
       child: Scaffold(
+        appBar: CustomAppBar(
+          title: 'Personagens',
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: loginController.logout,
+            ),
+          ],
+        ),
         body: Padding(
-          padding: EdgeInsets.all(10),
-          child: Center(
-            child: Text('Select Character Page'),
+          padding: const EdgeInsets.all(10),
+          child: SingleChildScrollView(
+            child: controller.obx(
+              (state) {
+                return Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.timer),
+                        Clock(),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    const Text.rich(
+                      textAlign: TextAlign.center,
+                      TextSpan(
+                        children: [
+                          TextSpan(text: 'Bem vindo(a) '),
+                          TextSpan(
+                            text: 'test!',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: const [
+                        Expanded(
+                          child: Text(
+                            'Conta premium expira em: 26/02/2023 20:19',
+                            style: TextStyle(color: Colors.lightGreen),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          child: Chip(
+                            backgroundColor: Colors.redAccent,
+                            label: Text(
+                              'Expirado',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                        childAspectRatio: 1.2,
+                      ),
+                      itemCount: 6,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (state!.length > index) {
+                          final AccountCharacterModel accountCharacterModel =
+                              state[index];
+                          return Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(accountCharacterModel
+                                        .character.characterClass),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: IconButton(
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: Colors.redAccent,
+                                      ),
+                                      onPressed: () => delete(() =>
+                                          controller.deleteCharacter(
+                                              accountCharacterModel.id)),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(accountCharacterModel.name),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                            'Nível ${accountCharacterModel.level}'),
+                                        const SizedBox(height: 5),
+                                        ElevatedButton(
+                                          onPressed: () => {},
+                                          child: const Text('Jogar'),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Card(
+                            child: IconButton(
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              icon: const Icon(
+                                Icons.person_add,
+                                size: 50,
+                              ),
+                              onPressed: () => navigate(AppRoutes.newCharacter),
+                            ),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                );
+              },
+              onEmpty: const Center(
+                child: Text('empty'),
+              ),
+              onError: (error) => Center(
+                child: Text(error.toString()),
+              ),
+              onLoading: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
           ),
         ),
       ),

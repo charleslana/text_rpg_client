@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/splash_screen_controller.dart';
+import '../themes/text_style_theme.dart';
 
 class SplashScreenPage extends StatelessWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
@@ -10,12 +11,15 @@ class SplashScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<SplashScreenController>();
 
-    return const SafeArea(
+    return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Center(
-            child: Text('Text RPG Online'),
+            child: Text(
+              'Text RPG Online',
+              style: getSonySketchEF().copyWith(fontSize: 50),
+            ),
           ),
         ),
       ),

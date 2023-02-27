@@ -23,7 +23,7 @@ class RegisterController extends GetxController {
       (result) {
         Get.back<dynamic>();
         showToast(result.message, ToastEnum.success);
-        Get.offAllNamed<dynamic>(AppRoutes.login);
+        replaceNavigate(AppRoutes.login);
       },
       onError: (dynamic error) {
         Get.back<dynamic>();

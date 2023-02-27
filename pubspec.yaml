@@ -37,6 +37,9 @@ flutter:
     - family: Yd2002
       fonts:
         - asset: assets/fonts/yd2002.ttf
+    - family: SonySketchEF
+      fonts:
+        - asset: assets/fonts/Sony_Sketch_EF.ttf
 
 flutter_icons:
   android: "launcher_icon"

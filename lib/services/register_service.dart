@@ -3,19 +3,11 @@ import 'package:get/get.dart';
 import '../models/register_model.dart';
 import '../models/response_model.dart';
 import '../utils/constants.dart';
-import 'language_service.dart';
 
 class RegisterService extends GetConnect {
-  final LanguageService _languageService = LanguageService();
-
   @override
   void onInit() {
-    httpClient
-      ..baseUrl = apiBaseUrl
-      ..addRequestModifier<dynamic>((dynamic request) {
-        request.headers['accept-language'] = _languageService.getLocaleString();
-        return request;
-      });
+    httpClient.baseUrl = apiBaseUrl;
     super.onInit();
   }
 

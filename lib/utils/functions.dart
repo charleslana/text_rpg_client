@@ -89,9 +89,6 @@ void showConfirmation(VoidCallback callback) {
       Get.back<dynamic>(),
       callback(),
     },
-    confirmTextColor: Colors.red,
-    cancelTextColor: Colors.white,
-    buttonColor: Colors.black,
     textCancel: 'dialog.confirmation.cancel.button'.tr,
     textConfirm: 'dialog.confirmation.confirm.button'.tr,
     title: 'dialog.confirmation.title'.tr,
@@ -101,4 +98,8 @@ void showConfirmation(VoidCallback callback) {
 
 void navigate(String routeName) {
   Get.toNamed<dynamic>(routeName);
+}
+
+void replaceNavigate(String routeName) {
+  Get.offAllNamed<dynamic>(routeName);
 }

@@ -5,7 +5,6 @@ import '../models/login_credential_model.dart';
 import '../utils/constants.dart';
 import 'encrypt_service.dart';
 import 'get_storage_service.dart';
-import 'language_service.dart';
 
 class LoginService extends GetConnect {
   final String _loginKey = 'login';
@@ -13,16 +12,10 @@ class LoginService extends GetConnect {
 
   final GetStorageService _getStorageService = GetStorageService();
   final EncryptService _encryptService = EncryptService();
-  final LanguageService _languageService = LanguageService();
 
   @override
   void onInit() {
-    httpClient
-      ..baseUrl = apiBaseUrl
-      ..addRequestModifier<dynamic>((dynamic request) {
-        request.headers['accept-language'] = _languageService.getLocaleString();
-        return request;
-      });
+    httpClient.baseUrl = apiBaseUrl;
     super.onInit();
   }
 
