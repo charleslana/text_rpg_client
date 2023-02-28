@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:text_rpg_client/bindings/account_binding.dart';
 import 'package:text_rpg_client/pages/home_page.dart';
 import 'package:text_rpg_client/pages/new_character_page.dart';
 import 'package:text_rpg_client/pages/select_character_page.dart';
@@ -52,6 +53,7 @@ class AppPages {
       bindings: [
         SelectCharacterBinding(),
         LoginBinding(),
+        AccountBinding(),
       ],
       middlewares: [
         AuthGuard(),
