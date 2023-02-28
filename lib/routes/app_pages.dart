@@ -4,11 +4,11 @@ import 'package:text_rpg_client/pages/home_page.dart';
 import 'package:text_rpg_client/pages/new_character_page.dart';
 import 'package:text_rpg_client/pages/select_character_page.dart';
 
+import '../bindings/account_character_binding.dart';
 import '../bindings/landing_binding.dart';
 import '../bindings/language_binding.dart';
 import '../bindings/login_binding.dart';
 import '../bindings/register_binding.dart';
-import '../bindings/select_character_binding.dart';
 import '../bindings/splash_screen_binding.dart';
 import '../guards/auth_guard.dart';
 import '../pages/landing_page.dart';
@@ -51,7 +51,7 @@ class AppPages {
       name: AppRoutes.selectCharacter,
       page: () => const SelectCharacterPage(),
       bindings: [
-        SelectCharacterBinding(),
+        AccountCharacterBinding(),
         LoginBinding(),
         AccountBinding(),
       ],

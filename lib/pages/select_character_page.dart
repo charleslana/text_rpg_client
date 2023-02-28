@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:text_rpg_client/controllers/account_character_controller.dart';
 import 'package:text_rpg_client/controllers/account_controller.dart';
-import 'package:text_rpg_client/controllers/select_character_controller.dart';
 import 'package:text_rpg_client/models/account_character_model.dart';
 import 'package:text_rpg_client/models/account_model.dart';
 import 'package:text_rpg_client/routes/app_routes.dart';
@@ -19,8 +19,8 @@ class SelectCharacterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginController loginController = Get.find<LoginController>();
-    final SelectCharacterController selectCharacterController =
-        Get.find<SelectCharacterController>();
+    final AccountCharacterController accountCharacterController =
+        Get.find<AccountCharacterController>();
     final AccountController accountController = Get.find<AccountController>();
 
     void delete(VoidCallback callback) {
@@ -122,7 +122,7 @@ class SelectCharacterPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  selectCharacterController.obx(
+                  accountCharacterController.obx(
                     (state) {
                       return GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
@@ -159,7 +159,7 @@ class SelectCharacterPage extends StatelessWidget {
                                           color: Colors.redAccent,
                                         ),
                                         onPressed: () => delete(() =>
-                                            selectCharacterController
+                                            accountCharacterController
                                                 .deleteCharacter(
                                                     accountCharacterModel.id)),
                                       ),
