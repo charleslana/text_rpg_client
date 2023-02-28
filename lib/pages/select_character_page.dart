@@ -55,9 +55,9 @@ class SelectCharacterPage extends StatelessWidget {
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Icon(Icons.timer),
-                              Clock(),
+                            children: [
+                              const Icon(Icons.timer),
+                              Clock(dateTime: accountController.time.value),
                             ],
                           ),
                           const SizedBox(height: 10),

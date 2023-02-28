@@ -4,17 +4,17 @@ import '../models/login_credential_model.dart';
 import '../routes/app_routes.dart';
 import '../services/auth_service.dart';
 import '../services/encrypt_service.dart';
-import '../services/landing_service.dart';
 import '../services/login_service.dart';
+import '../services/server_service.dart';
 import '../utils/constants.dart';
 
 class LandingController extends GetxController {
   LandingController({
-    required this.landingService,
+    required this.serverService,
     required this.loginService,
   });
 
-  LandingService landingService = LandingService();
+  ServerService serverService = ServerService();
   LoginService loginService = LoginService();
 
   RxString text = 'landing.page.version'.tr.obs;
@@ -29,7 +29,7 @@ class LandingController extends GetxController {
   }
 
   Future<void> _fetchVersion() async {
-    await landingService.getVersion().then(
+    await serverService.getVersion().then(
       (result) async {
         if (result != appVersion) {
           isLoading.value = false;

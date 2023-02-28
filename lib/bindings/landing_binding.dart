@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 
 import '../controllers/landing_controller.dart';
-import '../services/landing_service.dart';
 import '../services/login_service.dart';
+import '../services/server_service.dart';
 
 class LandingBinding extends Bindings {
   @override
   void dependencies() {
     Get
-      ..lazyPut(LandingService.new)
+      ..lazyPut(ServerService.new)
       ..lazyPut(
         () => LandingController(
-          landingService: Get.find<LandingService>(),
+          serverService: Get.find<ServerService>(),
           loginService: Get.find<LoginService>(),
         ),
       );
