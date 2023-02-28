@@ -8,11 +8,9 @@ import '../models/response_model.dart';
 class AccountController extends GetxController with StateMixin<AccountModel> {
   AccountController({
     required this.accountService,
-    this.serverService,
   });
 
   AccountService accountService = AccountService();
-  ServerService? serverService = ServerService();
   Rxn<DateTime> time = Rxn<DateTime>();
 
   @override
@@ -37,7 +35,8 @@ class AccountController extends GetxController with StateMixin<AccountModel> {
   }
 
   Future<void> _fetchServerTime() async {
-    await serverService?.getTime().then((result) {
+    final serverService = Get.put(ServerService());
+    await serverService.getTime().then((result) {
       time.value = DateTime.parse(result);
     }, onError: (dynamic error) {
       if (error is Map<String, dynamic>) {
