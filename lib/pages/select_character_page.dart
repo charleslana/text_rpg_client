@@ -27,6 +27,8 @@ class SelectCharacterPage extends StatelessWidget {
       showConfirmation(callback);
     }
 
+    DateTime accountPremiumDate = DateTime.now();
+
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -51,6 +53,7 @@ class SelectCharacterPage extends StatelessWidget {
                           DateFormat.yMd(LanguageService().getLocaleString())
                               .add_jm();
                       final premiumDate = account.premiumDate as DateTime;
+                      accountPremiumDate = premiumDate;
                       return Column(
                         children: [
                           Row(
@@ -187,18 +190,36 @@ class SelectCharacterPage extends StatelessWidget {
                               ),
                             );
                           } else {
-                            return Card(
-                              child: IconButton(
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                icon: const Icon(
-                                  Icons.person_add,
-                                  size: 50,
+                            if (index >= 4 &&
+                                accountPremiumDate.isBefore(
+                                    accountController.time.value as DateTime)) {
+                              return Card(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Icon(
+                                      Icons.lock,
+                                      size: 50,
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text('Requer conta premium'),
+                                  ],
                                 ),
-                                onPressed: () =>
-                                    navigate(AppRoutes.newCharacter),
-                              ),
-                            );
+                              );
+                            } else {
+                              return Card(
+                                child: IconButton(
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  icon: const Icon(
+                                    Icons.person_add,
+                                    size: 50,
+                                  ),
+                                  onPressed: () =>
+                                      navigate(AppRoutes.newCharacter),
+                                ),
+                              );
+                            }
                           }
                         },
                       );
