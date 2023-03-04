@@ -51,7 +51,7 @@ class SelectCharacterPage extends StatelessWidget {
                     final DateFormat formatter =
                         DateFormat.yMd(LanguageService().getLocaleString())
                             .add_jm();
-                    final premiumDate = account.premiumDate as DateTime;
+                    final premiumDate = account.premiumDate ?? DateTime.now();
                     accountPremiumDate = premiumDate;
                     return Column(
                       children: [
@@ -134,7 +134,7 @@ class SelectCharacterPage extends StatelessWidget {
                         crossAxisCount: 2,
                         mainAxisSpacing: 20,
                         crossAxisSpacing: 20,
-                        childAspectRatio: 1.2,
+                        childAspectRatio: 1,
                       ),
                       itemCount: 6,
                       itemBuilder: (BuildContext context, int index) {
@@ -167,10 +167,10 @@ class SelectCharacterPage extends StatelessWidget {
                                     ),
                                   ),
                                   Align(
-                                    alignment: Alignment.center,
+                                    alignment: Alignment.bottomCenter,
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.end,
                                       children: [
                                         Text(accountCharacterModel.name),
                                         const SizedBox(height: 5),
@@ -201,7 +201,10 @@ class SelectCharacterPage extends StatelessWidget {
                                     size: 50,
                                   ),
                                   SizedBox(height: 5),
-                                  Text('Requer conta premium'),
+                                  Text(
+                                    'Requer conta premium',
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ],
                               ),
                             );

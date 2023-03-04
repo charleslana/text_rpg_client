@@ -48,13 +48,19 @@ class NewCharacterPage extends GetView<NewCharacterController> {
                       textAlign: TextAlign.start,
                     ),
                     const SizedBox(height: 20),
-                    GroupButton<String>(
-                      buttons: (state as List<CharacterModel>)
-                          .map((e) => e.characterClass)
-                          .toList(),
-                      controller: controller.characterClassController,
-                      onSelected: (value, index, isSelected) =>
-                          selectCharacterClass(index, state[index]),
+                    Center(
+                      child: GroupButton<CharacterModel>(
+                        buttons: state as List<CharacterModel>,
+                        buttonIndexedBuilder: (selected, index, context) {
+                          return ChoiceChip(
+                            label: Text(state[index].characterClass),
+                            selected: selected,
+                          );
+                        },
+                        controller: controller.characterClassController,
+                        onSelected: (value, index, isSelected) =>
+                            selectCharacterClass(index, value),
+                      ),
                     ),
                     Card(
                       child: Padding(
@@ -76,6 +82,10 @@ class NewCharacterPage extends GetView<NewCharacterController> {
                       controller: controller.genderController,
                       onSelected: (value, index, isSelected) =>
                           controller.setGender(index),
+                      options: const GroupButtonOptions(
+                        selectedColor: Colors.deepOrange,
+                        unselectedColor: Colors.white70,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     const Text(
