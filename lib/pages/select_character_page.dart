@@ -19,9 +19,9 @@ class SelectCharacterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginController loginController = Get.find<LoginController>();
+    final AccountController accountController = Get.find<AccountController>();
     final SelectCharacterController selectCharacterController =
         Get.find<SelectCharacterController>();
-    final AccountController accountController = Get.find<AccountController>();
 
     void delete(VoidCallback callback) {
       showConfirmation(callback);
