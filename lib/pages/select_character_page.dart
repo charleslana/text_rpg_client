@@ -177,7 +177,10 @@ class SelectCharacterPage extends StatelessWidget {
                                             'Nível ${accountCharacterModel.level}'),
                                         const SizedBox(height: 5),
                                         ElevatedButton(
-                                          onPressed: () => {},
+                                          onPressed: () =>
+                                              selectCharacterController
+                                                  .selectCharacter(
+                                                      accountCharacterModel.id),
                                           child: const Text('Jogar'),
                                         ),
                                       ],

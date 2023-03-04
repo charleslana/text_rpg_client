@@ -39,4 +39,35 @@ class AccountCharacterService extends RequestService {
     }
     return ResponseModel.fromMap(response.body);
   }
+
+  Future<void> selectCharacter(int id) async {
+    final response = await get<dynamic>('/account/character/select/$id');
+    if (response.status.hasError) {
+      if (response.bodyString == null) {
+        return Future.error('connection.error'.tr);
+      }
+      return Future.error(response.body);
+    }
+  }
+
+  Future<void> logout() async {
+    final response = await get<dynamic>('/account/character/logout');
+    if (response.status.hasError) {
+      if (response.bodyString == null) {
+        return Future.error('connection.error'.tr);
+      }
+      return Future.error(response.body);
+    }
+  }
+
+  Future<AccountCharacterModel> getDetail() async {
+    final response = await get<dynamic>('/account/character/detail');
+    if (response.status.hasError) {
+      if (response.bodyString == null) {
+        return Future.error('connection.error'.tr);
+      }
+      return Future.error(response.body);
+    }
+    return AccountCharacterModel.fromJson(response.body);
+  }
 }

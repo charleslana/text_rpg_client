@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../enums/toast_enum.dart';
 import '../models/account_character_model.dart';
 import '../models/response_model.dart';
+import '../routes/app_routes.dart';
 import '../services/account_character_service.dart';
 import '../utils/functions.dart';
 
@@ -41,6 +42,24 @@ class SelectCharacterController extends GetxController
         Get.back<dynamic>();
         showToast(result.message, ToastEnum.success);
         _fetchAllCharacters();
+      },
+      onError: (dynamic error) {
+        Get.back<dynamic>();
+        if (error is Map<String, dynamic>) {
+          final ResponseModel response = ResponseModel.fromMap(error);
+          showToast(response.message, ToastEnum.error);
+          return;
+        }
+        showToast(error, ToastEnum.error);
+      },
+    );
+  }
+
+  Future<void> selectCharacter(int id) async {
+    showLoading();
+    await accountCharactersService.selectCharacter(id).then(
+      (result) {
+        replaceNavigate(AppRoutes.home);
       },
       onError: (dynamic error) {
         Get.back<dynamic>();
