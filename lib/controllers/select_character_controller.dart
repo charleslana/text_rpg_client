@@ -6,9 +6,9 @@ import '../models/response_model.dart';
 import '../services/account_character_service.dart';
 import '../utils/functions.dart';
 
-class AccountCharacterController extends GetxController
+class SelectCharacterController extends GetxController
     with StateMixin<List<AccountCharacterModel>> {
-  AccountCharacterController({
+  SelectCharacterController({
     required this.accountCharactersService,
   });
 
