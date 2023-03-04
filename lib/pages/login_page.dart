@@ -7,6 +7,7 @@ import '../controllers/login_controller.dart';
 import '../enums/toast_enum.dart';
 import '../models/login_credential_model.dart';
 import '../utils/functions.dart';
+import '../widgets/input_widget.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -40,15 +41,10 @@ class LoginPage extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
-                          TextFormField(
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                          InputWidget(
                             onChanged: credential.setUser,
                             validator: (value) => credential.user.validate(),
-                            decoration: InputDecoration(
-                              border: const UnderlineInputBorder(),
-                              labelText: 'login.page.input.user'.tr,
-                              errorMaxLines: 2,
-                            ),
+                            text: 'login.page.input.user'.tr,
                           ),
                           const SizedBox(height: 10),
                           Obx(() {

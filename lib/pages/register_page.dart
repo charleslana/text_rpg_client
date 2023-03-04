@@ -6,6 +6,7 @@ import '../controllers/register_controller.dart';
 import '../enums/toast_enum.dart';
 import '../models/register_model.dart';
 import '../utils/functions.dart';
+import '../widgets/input_widget.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -39,30 +40,16 @@ class RegisterPage extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
-                          TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
+                          InputWidget(
                             onChanged: register.setUser,
                             validator: (value) => register.user.validate(),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              border: const UnderlineInputBorder(),
-                              labelText: 'register.page.input.user'.tr,
-                              errorMaxLines: 2,
-                            ),
+                            text: 'register.page.input.user'.tr,
                           ),
                           const SizedBox(height: 10),
-                          TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
+                          InputWidget(
                             onChanged: register.setEmail,
                             validator: (value) => register.email.validate(),
-                            keyboardType: TextInputType.name,
-                            decoration: InputDecoration(
-                              border: const UnderlineInputBorder(),
-                              labelText: 'register.page.input.email'.tr,
-                              errorMaxLines: 2,
-                            ),
+                            text: 'register.page.input.email'.tr,
                           ),
                           const SizedBox(height: 10),
                           Obx(() {

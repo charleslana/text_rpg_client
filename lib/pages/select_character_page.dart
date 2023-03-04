@@ -169,8 +169,7 @@ class SelectCharacterPage extends StatelessWidget {
                                   Align(
                                     alignment: Alignment.bottomCenter,
                                     child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         Text(accountCharacterModel.name),
                                         const SizedBox(height: 5),

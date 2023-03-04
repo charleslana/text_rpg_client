@@ -8,6 +8,7 @@ import 'package:text_rpg_client/widgets/custom_app_bar.dart';
 
 import '../enums/toast_enum.dart';
 import '../utils/functions.dart';
+import '../widgets/input_widget.dart';
 
 class NewCharacterPage extends GetView<NewCharacterController> {
   const NewCharacterPage({Key? key}) : super(key: key);
@@ -93,15 +94,10 @@ class NewCharacterPage extends GetView<NewCharacterController> {
                       textAlign: TextAlign.start,
                     ),
                     const SizedBox(height: 20),
-                    TextFormField(
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                    InputWidget(
                       onChanged: newCharacter.setName,
                       validator: (value) => newCharacter.name.validate(),
-                      decoration: const InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: 'Nome',
-                        errorMaxLines: 2,
-                      ),
+                      text: 'Nome',
                     ),
                     const SizedBox(height: 20),
                     SizedBox(
