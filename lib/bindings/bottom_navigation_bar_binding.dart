@@ -8,6 +8,7 @@ class BottomNavigationBarBinding extends Bindings {
   void dependencies() {
     Get
       ..lazyPut(BottomNavigationBarController.new)
+      ..lazyPut(AccountCharacterService.new)
       ..lazyPut(
         () => SideBarController(
           accountCharacterService: Get.find<AccountCharacterService>(),

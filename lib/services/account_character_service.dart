@@ -68,6 +68,6 @@ class AccountCharacterService extends RequestService {
       }
       return Future.error(response.body);
     }
-    return AccountCharacterModel.fromJson(response.body);
+    return AccountCharacterModel.fromMap(response.body);
   }
 }

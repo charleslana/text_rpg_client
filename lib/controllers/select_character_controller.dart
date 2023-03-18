@@ -58,7 +58,7 @@ class SelectCharacterController extends GetxController
   Future<void> selectCharacter(int id) async {
     showLoading();
     await accountCharactersService.selectCharacter(id).then(
-      (result) {
+      (_) {
         replaceNavigate(AppRoutes.home);
       },
       onError: (dynamic error) {

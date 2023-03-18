@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:text_rpg_client/controllers/side_bar_controller.dart';
+import 'package:text_rpg_client/models/account_character_model.dart';
+import 'package:text_rpg_client/routes/app_routes.dart';
 import 'package:text_rpg_client/utils/functions.dart';
 
 class SideBar extends GetView<SideBarController> {
@@ -16,23 +18,42 @@ class SideBar extends GetView<SideBarController> {
     controller.logoutCharacter();
   }
 
+  void _profile() {
+    back();
+    replaceNavigate(AppRoutes.home);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const UserAccountsDrawerHeader(
-            accountEmail: Text("user@mail.com"),
-            accountName: Text("Seu zé"),
-            currentAccountPicture: CircleAvatar(
-              child: Text("SZ"),
+          controller.obx(
+            (state) {
+              final accountCharacter = state as AccountCharacterModel;
+              return UserAccountsDrawerHeader(
+                currentAccountPicture: CircleAvatar(
+                  child: Text(accountCharacter.character.characterClass),
+                ),
+                accountName: Text(accountCharacter.name),
+                accountEmail: Text('Nível: ${accountCharacter.level}'),
+              );
+            },
+            onEmpty: const Center(
+              child: Text('empty'),
+            ),
+            onError: (error) => Center(
+              child: Text(error.toString()),
+            ),
+            onLoading: const Center(
+              child: CircularProgressIndicator(),
             ),
           ),
-          const ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Minha conta'),
-            onTap: back,
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Perfil'),
+            onTap: _profile,
           ),
           ListTile(
             leading: Icon(Icons.group),
