@@ -103,3 +103,7 @@ void navigate(String routeName) {
 void replaceNavigate(String routeName) {
   Get.offAllNamed<dynamic>(routeName);
 }
+
+void back() {
+  Get.back<dynamic>();
+}

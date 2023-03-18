@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:text_rpg_client/bindings/account_binding.dart';
+import 'package:text_rpg_client/bindings/bottom_navigation_bar_binding.dart';
 import 'package:text_rpg_client/pages/home_page.dart';
 import 'package:text_rpg_client/pages/new_character_page.dart';
 import 'package:text_rpg_client/pages/select_character_page.dart';
@@ -71,7 +72,9 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => const HomePage(),
-      // binding: HomeBinding(),
+      bindings: [
+        BottomNavigationBarBinding(),
+      ],
       middlewares: [
         AuthGuard(),
       ],
