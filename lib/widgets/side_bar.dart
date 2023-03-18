@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:text_rpg_client/controllers/side_bar_controller.dart';
 import 'package:text_rpg_client/models/account_character_model.dart';
 import 'package:text_rpg_client/routes/app_routes.dart';
@@ -34,10 +35,35 @@ class SideBar extends GetView<SideBarController> {
               final accountCharacter = state as AccountCharacterModel;
               return UserAccountsDrawerHeader(
                 currentAccountPicture: CircleAvatar(
-                  child: Text(accountCharacter.character.characterClass),
+                  child: Text(
+                    accountCharacter.character.characterClass,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
                 accountName: Text(accountCharacter.name),
-                accountEmail: Text('Nível: ${accountCharacter.level}'),
+                accountEmail: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Nível: ${accountCharacter.level}'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: JustTheTooltip(
+                        margin: const EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                        ),
+                        isModal: true,
+                        content: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text(
+                              'Alzes: ${decimalNumberFormat(accountCharacter.alz)}'),
+                        ),
+                        child: Text(
+                            'Alzes: ${numberAbbreviation(accountCharacter.alz)}'),
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
             onEmpty: const Center(

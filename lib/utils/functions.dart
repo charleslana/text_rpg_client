@@ -75,11 +75,16 @@ void showToast(String message, ToastEnum toast) {
   );
 }
 
-String numberAbbreviation(dynamic myNumber) {
-  final String stringNumber = myNumber.toString();
+String numberAbbreviation(dynamic number) {
+  final String stringNumber = number.toString();
   final double doubleNumber = double.tryParse(stringNumber) ?? 0;
   final NumberFormat numberFormat = NumberFormat.compact();
   return numberFormat.format(doubleNumber);
+}
+
+String decimalNumberFormat(dynamic number) {
+  final NumberFormat numberFormat = NumberFormat.decimalPattern();
+  return numberFormat.format(int.parse(number));
 }
 
 void showConfirmation(VoidCallback callback) {
